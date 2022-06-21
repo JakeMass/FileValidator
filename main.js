@@ -3,14 +3,15 @@ import mapping from './filetypes.json' assert { type: "json" };
 const input = document.querySelector('#input');
 
 input.addEventListener('change', () => {
-    const file = input.files[0];
-
+    
     const reader = new FileReader();
-
+    
     const headerSize = 30;
-
+    
+    const file = input.files[0].slice(0, headerSize);
+    
     reader.onload = () => {
-        const values = new Uint8Array(reader.result);
+        const values = new Uint8Array(reader.result, 0, 30);
         let mimeType = '';
 
         let header = [];
