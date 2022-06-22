@@ -1,15 +1,16 @@
-import mapping from './filetypes.json' assert { type: "json" };
+//import mapping from './filetypes.json' assert { type: "json" };
+import mapping from './filetypes.js'
 
 const input = document.querySelector('#input');
 
 input.addEventListener('change', () => {
-    
+
     const reader = new FileReader();
-    
+
     const headerSize = 30;
-    
+
     const file = input.files[0].slice(0, headerSize);
-    
+
     reader.onload = () => {
         const values = new Uint8Array(reader.result, 0, 30);
         let mimeType = '';
@@ -49,4 +50,3 @@ input.addEventListener('change', () => {
 
     reader.readAsArrayBuffer(file);
 });
-
